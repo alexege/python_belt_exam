@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'python_belt_exam_app/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Login/Registration</title>
+</head>
+<body>
+    <div class="container">   
+            <h1 class="title">Welcome! Let's Travel!</h1>
+
+            <!-- Registration Form -->
+            <div class="registration-block">
+                <form action="/register" method="POST">
+                    {% csrf_token %}
+                    <table class="table table-striped registration-table">
+                        <tr>
+                            <td colspan=2>
+                                <h3 class="title">Registration</h3>
+                            </td>
+                        </tr>    
+                        <tr>
+                            <td>
+                                <label for="first_name">First Name</label>
+                            </td>
+                            <td>
+                                <input type="text" name="first_name" id="first_name" placeholder="Enter your first name here.">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="last_name">Last Name</label>
+                            </td>
+                            <td>
+                                <input type="text" name="last_name" id="last_name" placeholder="Enter your last name here.">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="email">Email</label>
+                            </td>
+                            <td>
+                                <input type="email" name="email" id="email" placeholder="Enter your email here.">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="password">Password</label>
+                            </td>
+                            <td>
+                                <input type="password" name="password" id="password" placeholder="Enter your password here.">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="confirmation_password">Confirm Password</label>
+                            </td>
+                            <td>
+                                <input type="password" name="confirmation_password" id="confirmation_password" placeholder="Enter your confirmation password here.">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan=2>
+                                <button class="btn btn-dark">Register</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+                <!-- Validation Check -->
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }} red"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+            </div>
+            
+            <!-- Login Form -->
+            <div class="login-block">
+                <form action="/login" method="POST">
+                    {% csrf_token %}
+                    <table class="table table-striped login-table">
+                        <tr>
+                            <td colspan=2>
+                                <h3 class="title">Login</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="email">Email</label>
+                            </td>
+                            <td>
+                                <input type="email" id="email" name="email" placeholder="Enter your email address here">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="password">Password</label>
+                            </td>
+                            <td>
+                                <input type="password" id="password" name="password" placeholder="Enter your password here">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan=2>
+                                <button class="btn btn-dark">Log In</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+    
+            <div>
+                <h1 class="title">Registered Users</h1>
+                <table class="table table-striped">
+                    <thead class="thead thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>First_name</th>
+                            <th>Last_name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    {% for user in logged_in_users %}
+                    <tr>
+                        <td>{{user.id}}</td>
+                        <td>{{user.first_name}}</td>
+                        <td>{{user.last_name}}</td>
+                        <td>{{user.email}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>    
+            </div>
+        </div>
+</body>
+</html>

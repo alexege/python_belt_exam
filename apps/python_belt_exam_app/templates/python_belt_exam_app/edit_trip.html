@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'python_belt_exam_app/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet">
+    <title>Edit Trip</title>
+</head>
+<body>
+    <h1>Hello, {{current_user.first_name}}! Let's edit your trip!</h1>
+    <a href="/logout" class="logout">Log Out</a>
+
+    <!-- Validation Check -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }} red"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="trip-block">
+        <form action="/update_trip/{{my_trip.id}}" method="POST">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>
+                        <label for="destination">Destination:</label>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" name="destination" id="destination" value="{{my_trip.destination}}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="start_date">Start Date:</label>
+                    </td>
+                    <td>
+                        <input class="form-control" type="date" name="start_date" id="start_date" value="{{trip}}">
+                    </td>
+                    <td>
+                        <i class="far fa-calendar-alt"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="end_date">End Date:</label>
+                    </td>
+                    <td>
+                        <input class="form-control" type="date" name="end_date" id="end_date" value="{{end_date}}">
+                    </td>
+                    <td>
+                        <i class="far fa-calendar-alt"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="plan">Plan</label>
+                    </td>
+                    <td>
+                        <textarea class="form-control" name="plan" id="plan" cols="30" rows="5">{{my_trip.plan}}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="spacing">
+                        <button class="btn btn-danger"><a href="/dashboard">Cancel</a></button>
+                        <button class="btn btn-primary">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'python_belt_exam_app/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>View Trip</title>
+</head>
+<body>
+    <a href="/dashboard" class="dashboard_link">Dashboard</a>
+    <a href="/logout" class="logout">Log Out</a>
+    <h3>Hello, {{current_user.first_name}}! Read about your trip!</h3>
+
+    <h3>{{current_trip_object.destination}}</h3>
+
+    <div class="trip-details-box">
+        <p><span class="bold">Start Date:</span> {{current_trip_object.start_date}}</p>
+        <p><span class="bold">End Date:</span> {{current_trip_object.end_date}}</p>
+        <p><span class="bold">Created On:</span> {{current_trip_object.created_at}}</p>
+        <p><span class="bold">Last Updated:</span> {{current_trip_object.updated_at}}</p>
+        <p><span class="bold">Plan:</span> {{current_trip_object.plan}}</p>
+        <p><span class="bold">Created by:</span> {{current_trip_object.created_by.first_name}}</p>
+    </div>
+
+    <div class="trip-details-box">
+        <h5>People who've joined the trip:</h5>
+        
+        {% for users in all_who_joined %}
+        <ul>
+            <li class="li-element">{{users.first_name}}</li>
+        </ul>
+        {% endfor %}
+        
+    </div>
+</body>
+</html>

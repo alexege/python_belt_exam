@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 15px;
+}
+
+i {
+    font-size: 25px;
+    padding: 10px;
+}
+
+h5 {
+    margin: 10px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.spacing button {
+    margin: 10px;
+}
+
+.title {
+    text-align: center;
+}
+
+.li-element {
+    margin-left: 30px;
+}
+
+.registration-table {
+    margin: 20px;
+    border: 2px solid black;
+}
+
+.login-table {
+    margin: 20px;
+    border: 2px solid black;
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+}
+
+.registration-block {
+    min-height: 250px;
+    max-width: 400px;
+    display:inline-block;
+}
+
+.login-block {
+    display:inline-block;
+    vertical-align: top;
+}
+
+.logout {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.dashboard_link {
+    position: absolute;
+    right: 110px;
+    top: 20px;
+}
+
+.red {
+    color: red;
+    text-align: left;
+}
+
+.logout_button {
+    padding-right: 40px;
+}
+
+.trip-block {
+    border: 2px solid purple;
+    margin: 20px;
+    padding: 15px;
+}
+
+.trip-details-box {
+    border: 2px solid black;
+    margin: 20px;
+    padding: 10px;
+}
